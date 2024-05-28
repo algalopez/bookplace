@@ -1,11 +1,17 @@
 plugins {
-    id 'java'
-    id 'io.quarkus'
+    id 'java' apply true
+    id 'io.quarkus' apply true
     id 'jacoco'
 }
 
+group = 'org.algalopez'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation project(':app:shared')
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
 
     implementation 'io.quarkus:quarkus-rest'
@@ -49,6 +55,3 @@ jacocoTestReport {
         csv.required = false
     }
 }
-
-
-

@@ -20,3 +20,6 @@ findProject(':app:author')?.name = 'author'
 include 'app:reader'
 findProject(':app:reader')?.name = 'reader'
 
+include 'app:shared'
+findProject(':app:shared')?.name = 'shared'
+

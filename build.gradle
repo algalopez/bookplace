@@ -36,7 +36,7 @@ allprojects {
 
 sonar {
     properties {
-        property 'sonar.projectKey', 'Bookplace'
+        property 'sonar.projectKey', 'org.algalopez.bookplace'
         property 'sonar.projectName', 'Bookplace'
         property 'sonar.projectVersion', version
         property 'sonar.language', 'java'

@@ -12,16 +12,19 @@ repositories {
 }
 
 dependencies {
-
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+
+    implementation 'io.quarkus:quarkus-rest'
+    implementation 'io.quarkus:quarkus-rest-jackson'
+    implementation 'io.quarkus:quarkus-jdbc-mariadb'
 
     compileOnly 'org.projectlombok:lombok:1.18.32'
     annotationProcessor 'org.projectlombok:lombok:1.18.32'
-    implementation 'io.quarkus:quarkus-rest-jackson'
-    implementation 'io.quarkus:quarkus-jdbc-mariadb'
-    implementation 'io.quarkus:quarkus-rest'
+
     testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'org.assertj:assertj-core:3.11.1'
+
     testCompileOnly 'org.projectlombok:lombok:1.18.32'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
 }
