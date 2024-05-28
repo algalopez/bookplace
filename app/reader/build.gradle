@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+    id 'jacoco'
+}
+
+group = 'org.algalopez'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-rest-jackson'
+    implementation 'io.quarkus:quarkus-jdbc-mariadb'
+    implementation 'io.quarkus:quarkus-rest'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+    testCompileOnly 'org.projectlombok:lombok:1.18.32'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    finalizedBy jacocoTestReport
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+    }
+}

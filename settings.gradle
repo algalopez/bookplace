@@ -8,4 +8,15 @@ pluginManagement {
         id "${quarkusPluginId}" version "${quarkusPluginVersion}"
     }
 }
+
 rootProject.name='bookplace'
+
+include 'app:bookstore'
+findProject(':app:bookstore')?.name = 'bookstore'
+
+include 'app:author'
+findProject(':app:author')?.name = 'author'
+
+include 'app:reader'
+findProject(':app:reader')?.name = 'reader'
+

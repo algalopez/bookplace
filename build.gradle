@@ -1,12 +1,12 @@
 plugins {
-    id 'java'
-    id 'io.quarkus'
-    id "org.sonarqube" version "5.0.0.4638"
-    id 'jacoco'
+    id 'java' apply true
+    id 'io.quarkus' apply true
+    id 'org.sonarqube' version "5.0.0.4638" apply true
 }
 
 group 'org.algalopez'
 version '1.0.0-SNAPSHOT'
+
 
 repositories {
     mavenCentral()
@@ -14,31 +14,24 @@ repositories {
 }
 
 dependencies {
+    // implementation project(':author')
+    // implementation project(':bookstore')
+    // implementation project(':reader')
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-rest-jackson'
-    implementation 'io.quarkus:quarkus-jdbc-mariadb'
-    implementation 'io.quarkus:quarkus-rest'
-    testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'io.rest-assured:rest-assured'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
+allprojects {
 
-test {
-    useJUnitPlatform()
-    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
-    finalizedBy jacocoTestReport
-}
-compileJava {
-    options.encoding = 'UTF-8'
-    options.compilerArgs << '-parameters'
-}
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 
-compileTestJava {
-    options.encoding = 'UTF-8'
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
 }
 
 sonar {
@@ -53,12 +46,6 @@ sonar {
         property 'sonar.exclusions', '**/Application.java'
         property 'sonar.coverage.exclusions', '**/Application.java'
         property 'sonar.host.url', 'http://localhost:34501'
-    }
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = true
-        csv.required = false
+        property 'sonar.login', 'sqa_af2e5ffc85f7261080db0d1e82d887f090f52407'
     }
 }

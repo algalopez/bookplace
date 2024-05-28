@@ -1,8 +1,6 @@
-version: "3"
-
 services:
   sonarqube:
-    image: sonarqube:9.9.4-community
+    image: sonarqube:9.9.5-community
     ports:
       - "34501:9000"
   db:
